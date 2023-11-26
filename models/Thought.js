@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 
-const thoughtSchema = new mongoose.Schema (
+const thoughtSchema = new Schema (
   {
 thoughtText: {
   type: 'string',
@@ -22,6 +22,24 @@ username: { // of user who created thought.
 reactions: {
   // array of nested documents,
 },
+reactionId: {
+  type: Schema.Types.ObjectId,
+  default: () => new Types.ObjectId(),
+},
+reactionBody: {
+  type: 'string',
+  required: true,
+  max_length: 280,
+},
+username: {
+  type: 'string',
+  required: true,
+},
+createdAt: {
+  type: Date,
+  default: Date.now(),
+  // use getter to format timestamp on query.
+}
 }
 )
 
@@ -31,6 +49,6 @@ reactions: {
 
 
 
-const thoughtText = model('thought', ThoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

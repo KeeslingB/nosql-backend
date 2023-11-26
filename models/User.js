@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 
-const UserSchema = newSchema(
+const userSchema = new Schema(
   {
     username: {
       type: 'string',
@@ -20,6 +20,9 @@ const UserSchema = newSchema(
     },
     friends: {
       //array of _id values refferencing the User model (self refferences).
+    },
+    friendCount: {
+      virtuals: true, // will need to be gone over as im sure this part is wrong.
     }
   }
 )
@@ -29,6 +32,6 @@ const UserSchema = newSchema(
 
 
 
-const username = model('user', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;
