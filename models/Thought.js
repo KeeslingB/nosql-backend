@@ -39,9 +39,14 @@ createdAt: {
   type: Date,
   default: Date.now(),
   // use getter to format timestamp on query.
-}
+},
+reactionCount: {
+  //retrieves the length of the reactions array field on query.
+},
 }
 )
+
+
 
 // Schema Settings --
 // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
