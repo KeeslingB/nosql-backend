@@ -11,7 +11,7 @@ const userSchema = new Schema(
       type: 'string',
       unique: true,
       required: true,
-      trim: true,  // might need revision when testing routes later on.
+      trimmed: true,  // might need revision when testing routes later on.
     },
     email: {
       type: 'string',
@@ -24,7 +24,7 @@ const userSchema = new Schema(
         message: 'Not a Valid Email!' //will need to add validation for email.
     },
     thoughts: {
-      references: [{ type: Schema.Types.Objectid, ref: 'Thought'}], //lost?
+      references: [{ type: Schema.Types.Objectid, ref: 'thought'}], //lost?
       // array of _id values refferencing the Thought model.
     },
     friends: {
