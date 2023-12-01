@@ -6,7 +6,7 @@ module.exports = {
     try{
       const thoughts = await Thought.find();
       res.json(thoughts);
-      // console.log(Thought);
+      console.log(Thought);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -14,6 +14,7 @@ module.exports = {
   async getSingleThought(req, res){
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId }).select('-__v');
+      console.log(thought); // returning null
       if (!thought) {
         return res.status(404).json({ message: 'No thought with this ID'});
       }

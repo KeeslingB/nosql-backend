@@ -4,11 +4,9 @@ const { User, Thought  } = require('../models');
 module.exports = {
   async getUsers(req, res){
     try {
-      console.log(User);
       const users = await User.find();
       res.json(users);
     } catch (err) {
-      // console.log(err);
       res.status(500).json(err);
     }
   },
@@ -28,7 +26,6 @@ module.exports = {
       const user = await User.create(req.body);
       res.json(user);
     } catch (err) {
-      console.logg(err);
       return res.status(500).json(err);
     }
   },

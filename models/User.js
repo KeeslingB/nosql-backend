@@ -12,7 +12,7 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      trim: true,  // might need revision when testing routes later on.
+      trim: true,  
     },
     email: {
       type: String,
@@ -22,7 +22,7 @@ const userSchema = new Schema(
         validator: function (v) {
           return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
         },
-        message: 'Not a Valid Email!' //will need to add validation for email.
+        message: 'Not a Valid Email!'  
       },
     },
       thoughts: [
