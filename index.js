@@ -2,7 +2,7 @@ const express = require('require');
 const db = require('./config/connection');
 const routes = require('./routes');
 
-
+const router = require('express').router()
 
 const PORT = proccess.env.PORT || 3001;
 const app = express();
@@ -17,3 +17,5 @@ db.once('open', () => {
     console.log(`API server for ${activity} running on port ${PORT}!`);
   });
 });
+
+module.exports = router;

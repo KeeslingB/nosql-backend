@@ -1,6 +1,5 @@
 // const mongoose = require('mmongoose');
-const { Schema, Types } = require('mongoose');
-
+const { Schema, model } = require('mongoose');
 
 const reactionSchema = new Schema (
   {
@@ -21,7 +20,8 @@ const reactionSchema = new Schema (
       type: Date,
       default: Date.now(),
       default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-      // get: time => helper(time)
     },
   }
 )
+
+module.exports = reactionSchema; // ?

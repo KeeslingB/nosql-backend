@@ -8,31 +8,14 @@ const {
   updateUser,
 } = require ('../../controllers/userControllers');
 
-// get  all users // also create user?
+
+// unsure on routing
+// get  all users 
 router.route('/').get(getUsers).post(createUser);
 
 
 // get single user by id.
-router.route('/:userId').get(getSingleUser).delete(deleteUser);
-
-
-
-
-
-
-// delete a user by id bonus to remove associated thoughtswhen deleted.
-router.route('./:userId').delete(deleteUser);
-
-
-
-
-
-
-
-
-
-
-
+router.route('/:userId').get(getSingleUser).delete(deleteUser).put(updateUser);
 
 
 module.exports = router;

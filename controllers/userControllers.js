@@ -1,11 +1,14 @@
+// const { ObjectId } = require('mongoose').Types;
 const { User, Thought  } = require('../models');
 
 module.exports = {
   async getUsers(req, res){
     try {
+      console.log(User);
       const users = await User.find();
-      res.json(user);
+      res.json(users);
     } catch (err) {
+      // console.log(err);
       res.status(500).json(err);
     }
   },
@@ -37,7 +40,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID'});
       }
       await Thought.deleteMany({ _id: { $in: user.thought}});
-      res.json({ message: 'User and Thought deleted!'})
+      res.json({ message: 'User Deleted!'})
     } catch (err) {
       res.status(500).json(err);
     }
@@ -56,5 +59,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-};
+  }
+
+
 
