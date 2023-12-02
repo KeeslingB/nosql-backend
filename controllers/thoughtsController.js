@@ -12,7 +12,7 @@ module.exports = {
   },
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params.thoughtId }).select('-__v');
+      const thought = await Thought.findOne({ id: req.params.thoughtId });
       if (!thought) {
         return res.status(404).json({ message: 'No thought with this ID'});
       }
@@ -32,11 +32,12 @@ module.exports = {
   },
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findOneAndDelete( { _id: req.params.thoughtId} )
+      const thought = await Thought.findOneAndDelete( { id: req.params.thoughtId} )
       if (!thought) {
         return res.status(404).json({ message: 'No thought with this ID'});
       }
-      await Thought.deleteMany({ _id: { $in: thought.user }});
+      // await Thought.deleteMany({ id: { $in: thought.user }});
+      res.json(thought)
     } catch (err) {
       res.status(500).json(err);
     }
@@ -44,7 +45,7 @@ module.exports = {
   async updateThought(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
-        { _id: req.params.thoughtId },
+        { id: req.params.thoughtId },
         { $set: req.body },
       );
       if (!thought) {
@@ -55,6 +56,33 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-};
+  async     createReaction({ params, body }, res) {
+   await Thought.findOneAndUpdate(
+        { _id: params.thoughtId },
+        { $push: { reactions: body } },
+    )
+    .then(thought => {
+        if(!thought) {
+            res.status(404).json({ message: 'No user found with this id.' });
+            return;
+        }
+        res.json(thought)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+},
+async   deleteReaction({ params }, res) {
+   await Thought.findOneAndDelete(
+      { id: params.thoughtId},
+  )
+  .then(thought => res.json(thought))
+  .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+  });
+}
+}
 
 
