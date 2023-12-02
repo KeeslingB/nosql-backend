@@ -6,15 +6,13 @@ module.exports = {
     try{
       const thoughts = await Thought.find();
       res.json(thoughts);
-      console.log(Thought);
     } catch (err) {
       res.status(500).json(err);
     }
   },
-  async getSingleThought(req, res){
+  async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId }).select('-__v');
-      console.log(thought); // returning null
       if (!thought) {
         return res.status(404).json({ message: 'No thought with this ID'});
       }
@@ -34,7 +32,7 @@ module.exports = {
   },
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findoneAndDelete({ _id: req.params.thoughtId});
+      const thought = await Thought.findOneAndDelete( { _id: req.params.thoughtId} )
       if (!thought) {
         return res.status(404).json({ message: 'No thought with this ID'});
       }

@@ -1,4 +1,3 @@
-// const { ObjectId } = require('mongoose').Types;
 const { User, Thought  } = require('../models');
 
 module.exports = {
@@ -56,7 +55,23 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  async addFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId},
+        { $addToSet: {friends: req.params.friendId}},
+      )
+      const friend = await User.findOneAndUpdate(
+        { _id: req.params.friendId},
+        { $addToSet: {user: req.params.userId}},
+      )
+      if( !user || !friend ){
+        return res.status(404).json({ message:'no user or friend with this ID!'});
+    }
+    res.json(user);
+  } 
+    catch (err) {
+      res.status(500).json(err);
+    }
   }
-
-
-
+}

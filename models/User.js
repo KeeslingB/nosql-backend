@@ -1,5 +1,3 @@
-// const mongoose = require('mongoose');
-// const router = require('express').Router();
 const { Schema, model } = require('mongoose');
 
 
@@ -28,7 +26,7 @@ const userSchema = new Schema(
       thoughts: [
         {
           type: Schema.Types.ObjectId,
-          ref: "Thought",
+          ref: "Thoughts",
         }
       ],
       friends: [
