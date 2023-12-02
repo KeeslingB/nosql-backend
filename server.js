@@ -18,31 +18,3 @@ db.once('open', () => {
     console.log(`API server for  running on port http://localhost:${PORT}/`);
   });
 });
-
-// module.exports = router;
-
-// const client = new MongoClient(connectionStringURI);
-// const { connect, connection } = require('mongoose');
-
-// const connectionString =
-//   process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/mongobackendDB';
-
-// connect(connectionString);
-
-// module.exports = connection;
-
-
-// client.connect()
-//   .then(() => {
-//     console.log('Connected successfully to MongoDB');
-//     // Use client.db() constructor to add new db instance
-//     db = client.db(dbName);
-
-//     // start up express server
-//     app.listen(port, () => {
-//       console.log(`Example app listening at http://localhost:${port}`);
-//     });
-//   })
-//   .catch((err) => {
-//     console.error('Mongo connection error: ', err.message);
-//   });
